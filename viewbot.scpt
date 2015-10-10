@@ -12,6 +12,9 @@ property targetUrl : "http://www.google.com/"
 # The time to wait for to load the webpage
 property waitTime : 5
 
+# The web browser to use
+property webApplication : "Safari"
+
 # Selection dialogues
 
 display dialog "What is the website url that you are View Botting? " buttons {"OK"} default answer "http://www.mywebsite.com/"
@@ -23,9 +26,15 @@ set repeatNumber to text returned of result
 display dialog "What is the time (seconds) between page views? " buttons {"OK"} default answer "7"
 set waitTime to text returned of result
 
+# Displays if 'other' was selected
+display dialog "What Web Browser do you want to use?" default answer "Safari" buttons {"OK"} default button 1
+set webApplication to text returned of result
+
+
 # Main Repeat Loop
+
 repeat repeatNumber times
-	tell application "Safari"
+	tell application webApplication
 		
 		# Opens the webpage
 		open location targetUrl
@@ -36,7 +45,7 @@ repeat repeatNumber times
 		
 		# Closes the webpage to prevent the computer from
 		# running out of ram and crashing
-		tell application "Safari"
+		tell application webApplication
 			close (every window)
 		end tell
 	end tell
