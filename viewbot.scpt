@@ -4,16 +4,16 @@
 #										#
 
 # Sets the amount of times the webpage is opened and closed
-property repeatNumber : 1000000
+property repeatNumber : 0
 
 # Set the Target url
-property targetUrl : "http://www.google.com/"
+property targetUrl : ""
 
 # The time to wait for to load the webpage
-property waitTime : 5
+property waitTime : 0
 
 # The web browser to use
-property webApplication : "Safari"
+property webApplication : ""
 
 # Selection dialogues
 
@@ -30,6 +30,9 @@ set waitTime to text returned of result
 display dialog "What Web Browser do you want to use?" default answer "Safari" buttons {"OK"} default button 1
 set webApplication to text returned of result
 
+# Displays that the loop is running
+# Automatically exits after 2 seconds
+display dialog "Script is running" buttons {"Cancel"} giving up after 1
 
 # Main Repeat Loop
 
@@ -45,8 +48,6 @@ repeat repeatNumber times
 		
 		# Closes the webpage to prevent the computer from
 		# running out of ram and crashing
-		tell application webApplication
-			close (every window)
-		end tell
+		close (every window)
 	end tell
 end repeat
